@@ -6,12 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
+    <script href = "script.js" defer></script>
 </head>
 <body>
     <div class="header">
         <h1>Library</h1>
         <button type="submit">Log-In</button>
     </div>
-    <div class="main">a</div>
+    <div class="add-book-container">
+        <button class="add-book">Add Book</button>
+    </div>
+    <div class="main">
+        <div class="book-container">
+            <div class="book">
+                <h2 class="title">Harry Potter and the Sorcerer's Stone</h2>
+                <h3 class="author">J.K. Rowling</h3>
+                <h3 class="pages-number">100</h3>
+                <button class="read" style="background-color: green;">Read</button>
+                <button class="remove">Remove</button>
+            </div>
+        </div>
+
+        <div class="book-container">
+            <div class="book">
+                <h2 class="title">Diary of a Wimpy Kid</h2>
+                <h3 class="author">Jeff Kinney</h3>
+                <h3 class="pages-number">100</h3>
+                <button class="read" style="background-color: red;">Not Read</button>
+                <button class="remove">Remove</button>
+            </div>
+        </div>
+
+        <div class="book-container">
+            <div class="book">
+                <h2 class="title">The Hunger Games</h2>
+                <h3 class="author">Suzanne Collins</h3>
+                <h3 class="pages-number">100</h3>
+                <button class="read" style="background-color: red;">Not Read</button>
+                <button class="remove">Remove</button>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>

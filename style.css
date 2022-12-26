@@ -3,10 +3,10 @@ body {
     width: 100%;
     margin: 0;
     display: grid;
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 1fr 1fr 10fr;
 }
 
-.header, .main {
+.header, .add-book-container, .main {
   padding: 15px;
 }
 
@@ -15,15 +15,46 @@ body {
     justify-content: space-between;
 }
 
-h1 {
+h1, h2, h3 {
     margin: 0;
 }
 
+button{
+    width: 100px;
+}
 
+.add-book-container{
+    display: flex;
+    justify-content: center;
+}
 
 .main {
     display: grid;
     background: pink;
+    gap: 20px;
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+
+.book {
+    background-color: white;
+    padding: 15px;
+    width: 66%;
+    height: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-container {
+    background-color: yellow;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 
