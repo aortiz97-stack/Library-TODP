@@ -46,6 +46,15 @@ form {
     padding: 50px;
 }
 
+form .exit{
+    border-radius: 25px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 0;
+    top: 0;
+}
+
 .main {
     display: grid;
     background: pink;
