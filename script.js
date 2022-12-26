@@ -8,8 +8,9 @@ function Book(title, author, pagesNumber, read) {
   this.read = read;
 }
 
-/*function addBookToLibrary() {
-}*/
+function addBookToLibrary(book) {
+  myLibrary.push(book);
+}
 
 const addBookButton = document.querySelector('.add-book');
 const formPopUp = document.querySelector('.form-popup');
@@ -33,9 +34,38 @@ exitFormButton.addEventListener('click', () => {
   });
 });
 
-console.log(submitButton);
+function displayBooks() {
+  mainGrid.textContent = '';
+  myLibrary.forEach((newBook) => {
+    const bookDiv = document.createElement('div');
+    bookDiv.classList.add('book');
+    const bookContainerDiv = document.createElement('div');
+    bookContainerDiv.classList.add('book-container');
+
+    function addHTML(elementType, bookProperty) {
+      const HTML = document.createElement(elementType);
+      HTML.textContent = bookProperty;
+      bookDiv.appendChild(HTML);
+    }
+
+    addHTML('h2', newBook.title);
+    addHTML('h3', newBook.author);
+    addHTML('h3', newBook.pagesNumber);
+    addHTML('h3', newBook.read);
+
+    const formSubmitButton = document.createElement('button');
+    formSubmitButton.setAttribute('type', 'submit');
+    bookDiv.appendChild(formSubmitButton);
+    const formRemoveButton = document.createElement('button');
+    formRemoveButton.classList.add('remove');
+    bookDiv.appendChild(formRemoveButton);
+
+    bookContainerDiv.appendChild(bookDiv);
+    mainGrid.appendChild(bookContainerDiv);
+  });
+}
+
 submitButton.addEventListener('click', (e) => {
-    console.log("enterred");
   e.preventDefault();
   const inputValues = [];
   inputs.forEach((input) => {
@@ -49,29 +79,7 @@ submitButton.addEventListener('click', (e) => {
     inputValues[3],
   );
 
-  const bookDiv = document.createElement('div');
-  bookDiv.classList.add('book');
-  const bookContainerDiv = document.createElement('div')
-  bookContainerDiv.classList.add('book-container');
-
-  function addHTML(elementType, bookProperty) {
-    const HTML = document.createElement(elementType);
-    HTML.textContent = bookProperty;
-    bookDiv.appendChild(HTML);
-  }
-
-  addHTML('h2', newBook.title);
-  addHTML('h3', newBook.author);
-  addHTML('h3', newBook.pagesNumber);
-  addHTML('h3', newBook.read);
-
-  const formSubmitButton = document.createElement('button');
-  formSubmitButton.setAttribute('type', 'submit');
-  bookDiv.appendChild(formSubmitButton);
-  const formRemoveButton = document.createElement('button');
-  formRemoveButton.classList.add('remove');
-  bookDiv.appendChild(formRemoveButton);
-
-  bookContainerDiv.appendChild(bookDiv);
-  mainGrid.appendChild(bookContainerDiv);
+  addBookToLibrary(newBook);
+  displayBooks();
+  console.log(myLibrary);
 });
