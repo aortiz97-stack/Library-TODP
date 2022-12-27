@@ -101,3 +101,31 @@ submitButton.addEventListener('click', (e) => {
   addBookToLibrary(newBook);
   displayBooks();
 });
+
+const readButtons = document.querySelectorAll('.book button.read');
+console.log(`readButtons: ${readButtons}`);
+readButtons.forEach((button) => {
+  console.log(button);
+  button.addEventListener('click', () => {
+    console.log('hahahahahahahha');
+    const book = button.parentNode;
+    const bookIndex = myLibrary.indexOf(book);
+    let hasRead;
+    delete myLibrary[bookIndex];
+
+    if (button.textContent === 'Read') {
+      button.textContent = 'Not Read';
+      button.style.backgroundColor = 'red';
+      hasRead = false;
+    } else {
+      button.textContent = 'Read';
+      button.style.backgroundColor = 'green';
+      hasRead = true;
+    }
+
+    const newBook = new Book(book.title, book.author, book.pagesNumber, hasRead);
+
+    myLibrary.splice(bookIndex, 0, newBook);
+    displayBooks();
+  });
+});
