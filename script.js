@@ -5,7 +5,6 @@ function Book(title, author, pagesNumber, read) {
   this.title = title;
   this.author = author;
   this.pagesNumber = pagesNumber;
-  console.log(`wahahaha ${read}`);
   this.read = read;
 }
 
@@ -35,6 +34,18 @@ exitFormButton.addEventListener('click', () => {
   });
 });
 
+function changeReadStatusButton(readButtonHTML) {
+  readButtonHTML.addEventListener('click', () => {
+    if (readButtonHTML.textContent === 'Read') {
+      readButtonHTML.textContent = 'Not Read';
+      readButtonHTML.style.backgroundColor = 'red';
+    } else {
+      readButtonHTML.textContent = 'Read';
+      readButtonHTML.style.backgroundColor = 'green';
+    }
+  });
+}
+
 function displayBooks() {
   mainGrid.textContent = '';
   myLibrary.forEach((newBook) => {
@@ -53,6 +64,7 @@ function displayBooks() {
           HTML.textContent = 'Not Read';
           HTML.style.backgroundColor = 'red';
         }
+        changeReadStatusButton(HTML);
       } else {
         HTML.textContent = bookProperty;
       }
@@ -64,15 +76,10 @@ function displayBooks() {
     addHTML('h3', newBook.pagesNumber);
     addHTML('button', newBook.read);
 
-    const formRemoveButton = document.createElement('button');
-    formRemoveButton.classList.add('remove');
-    formRemoveButton.textContent = 'Remove';
-    bookDiv.appendChild(formRemoveButton);
-
-    const formSubmitButton = document.createElement('button');
-    formSubmitButton.setAttribute('type', 'submit');
-    formSubmitButton.textContent = 'Submit';
-    bookDiv.appendChild(formSubmitButton);
+    const bookRemoveButton = document.createElement('button');
+    bookRemoveButton.classList.add('remove');
+    bookRemoveButton.textContent = 'Remove';
+    bookDiv.appendChild(bookRemoveButton);
 
     bookContainerDiv.appendChild(bookDiv);
     mainGrid.appendChild(bookContainerDiv);
@@ -100,32 +107,4 @@ submitButton.addEventListener('click', (e) => {
 
   addBookToLibrary(newBook);
   displayBooks();
-});
-
-const readButtons = document.querySelectorAll('.book button.read');
-console.log(`readButtons: ${readButtons}`);
-readButtons.forEach((button) => {
-  console.log(button);
-  button.addEventListener('click', () => {
-    console.log('hahahahahahahha');
-    const book = button.parentNode;
-    const bookIndex = myLibrary.indexOf(book);
-    let hasRead;
-    delete myLibrary[bookIndex];
-
-    if (button.textContent === 'Read') {
-      button.textContent = 'Not Read';
-      button.style.backgroundColor = 'red';
-      hasRead = false;
-    } else {
-      button.textContent = 'Read';
-      button.style.backgroundColor = 'green';
-      hasRead = true;
-    }
-
-    const newBook = new Book(book.title, book.author, book.pagesNumber, hasRead);
-
-    myLibrary.splice(bookIndex, 0, newBook);
-    displayBooks();
-  });
 });
