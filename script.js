@@ -89,16 +89,15 @@ function displayBooks() {
     bookRemoveButton.classList.add('remove');
     bookRemoveButton.textContent = 'Remove';
     bookRemoveButton.addEventListener('click', () => {
-        console.log(`library: ${myLibrary}`);
       const bookIndex = myLibrary.indexOf(newBook);
       myLibrary.splice(bookIndex, 1);
-      console.log(`updated library: ${myLibrary}`)
       displayBooks();
     });
     bookDiv.appendChild(bookRemoveButton);
 
     bookContainerDiv.appendChild(bookDiv);
     mainGrid.appendChild(bookContainerDiv);
+    bookContainerDiv.scrollIntoView();
   });
 }
 
