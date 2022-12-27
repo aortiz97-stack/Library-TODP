@@ -80,6 +80,7 @@ form .exit{
 
 .book {
     background-color: white;
+    border-radius: 25px;
     width: 22vw;
     height: 33vh;
     padding: 15px;
@@ -91,8 +92,11 @@ form .exit{
     justify-content: center;
 }
 
+button {
+    border-radius: 5px;
+}
+
 .book-container {
-    background-color: yellow;
     display: flex;
     align-items: flex-start;
     justify-content: center;
