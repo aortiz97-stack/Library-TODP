@@ -2,6 +2,11 @@
     font-family: Verdana, sans-serif;
 }
 
+button:not(.main button) {
+    background-color: #00008B;
+    color: #F9F5EC;
+}
+
 body {
     height: 100vh;
     width: 100%;
