@@ -1,9 +1,13 @@
 body {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     margin: 0;
-    display: grid;
-    grid-template-rows: 1fr 1fr 10fr;
+    display: flex;
+    flex-direction: column;
+}
+
+.header, .add-book-container{
+    flex-grow: 1;
 }
 
 .header, .add-book-container, .main {
@@ -13,6 +17,7 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
+    max-height: 8.3vh;
 }
 
 h1, h2, h3 {
@@ -26,6 +31,7 @@ button{
 .add-book-container{
     display: flex;
     justify-content: center;
+    max-height: 8.3vh;
 }
 
 .form-popup {
@@ -56,11 +62,14 @@ form .exit{
 }
 
 .main {
+    flex-grow: 2;
+    height: 100%;
     display: grid;
     background: pink;
     gap: 20px;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    overflow: scroll;
 }
 
 .main button.read:checked{
@@ -71,9 +80,9 @@ form .exit{
 
 .book {
     background-color: white;
+    width: 22vw;
+    height: 33vh;
     padding: 15px;
-    width: 66%;
-    height: 50%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -88,6 +97,17 @@ form .exit{
     align-items: flex-start;
     justify-content: center;
 }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
 
 
 
