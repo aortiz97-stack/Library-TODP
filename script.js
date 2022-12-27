@@ -48,13 +48,10 @@ function changeReadStatusButton(readButtonHTML, book) {
     }
 
     const bookIndex = myLibrary.indexOf(book);
-    console.log(`bookIndex: ${bookIndex}`);
-    if (bookIndex !== -1){
-    const newBook = new Book(book.title, book.author, book.pagesNumber, newRead);
-    console.log(`newBook: ${newBook}`)
-    myLibrary.splice(bookIndex, 1, newBook);
+    if (bookIndex !== -1) {
+      const newBook = new Book(book.title, book.author, book.pagesNumber, newRead);
+      myLibrary.splice(bookIndex, 1, newBook);
     }
-    console.log(`library: ${myLibrary}`);
   });
 }
 
@@ -91,6 +88,13 @@ function displayBooks() {
     const bookRemoveButton = document.createElement('button');
     bookRemoveButton.classList.add('remove');
     bookRemoveButton.textContent = 'Remove';
+    bookRemoveButton.addEventListener('click', () => {
+        console.log(`library: ${myLibrary}`);
+      const bookIndex = myLibrary.indexOf(newBook);
+      myLibrary.splice(bookIndex, 1);
+      console.log(`updated library: ${myLibrary}`)
+      displayBooks();
+    });
     bookDiv.appendChild(bookRemoveButton);
 
     bookContainerDiv.appendChild(bookDiv);
