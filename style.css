@@ -2,9 +2,8 @@
     font-family: Verdana, sans-serif;
 }
 
-button:not(.main button) {
-    background-color: #00008B;
-    color: #F9F5EC;
+button:not(.main button), .main button.remove {
+    background-color: #CF9FFF;
 }
 
 body {
@@ -17,6 +16,8 @@ body {
 
 .header, .add-book-container{
     flex-grow: 1;
+    background-color: #00008B;
+    color: #F9F5EC;
 }
 
 .header, .add-book-container, .main {
@@ -79,10 +80,6 @@ form .exit{
     grid-auto-flow: row;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     overflow: scroll;
-}
-
-.main button:not(.remove) {
-    color: #F9F5EC;
 }
 
 
