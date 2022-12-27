@@ -72,9 +72,8 @@ form .exit{
     overflow: scroll;
 }
 
-.main button.read:checked{
-    background-color: green;
-    content: 'Read';
+.main button:not(.remove) {
+    color: #F9F5EC;
 }
 
 
