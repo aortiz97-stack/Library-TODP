@@ -63,6 +63,11 @@ form .exit{
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
+.main button.read:checked{
+    background-color: green;
+    content: 'Read';
+}
+
 
 .book {
     background-color: white;

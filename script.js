@@ -5,6 +5,7 @@ function Book(title, author, pagesNumber, read) {
   this.title = title;
   this.author = author;
   this.pagesNumber = pagesNumber;
+  console.log(`wahahaha ${read}`);
   this.read = read;
 }
 
@@ -44,21 +45,34 @@ function displayBooks() {
 
     function addHTML(elementType, bookProperty) {
       const HTML = document.createElement(elementType);
-      HTML.textContent = bookProperty;
+      if (typeof bookProperty === 'boolean') {
+        if (bookProperty === true) {
+          HTML.textContent = 'Read';
+          HTML.style.backgroundColor = 'green';
+        } else {
+          HTML.textContent = 'Not Read';
+          HTML.style.backgroundColor = 'red';
+        }
+      } else {
+        HTML.textContent = bookProperty;
+      }
       bookDiv.appendChild(HTML);
     }
 
     addHTML('h2', newBook.title);
     addHTML('h3', newBook.author);
     addHTML('h3', newBook.pagesNumber);
-    addHTML('h3', newBook.read);
+    addHTML('button', newBook.read);
+
+    const formRemoveButton = document.createElement('button');
+    formRemoveButton.classList.add('remove');
+    formRemoveButton.textContent = 'Remove';
+    bookDiv.appendChild(formRemoveButton);
 
     const formSubmitButton = document.createElement('button');
     formSubmitButton.setAttribute('type', 'submit');
+    formSubmitButton.textContent = 'Submit';
     bookDiv.appendChild(formSubmitButton);
-    const formRemoveButton = document.createElement('button');
-    formRemoveButton.classList.add('remove');
-    bookDiv.appendChild(formRemoveButton);
 
     bookContainerDiv.appendChild(bookDiv);
     mainGrid.appendChild(bookContainerDiv);
@@ -69,7 +83,12 @@ submitButton.addEventListener('click', (e) => {
   e.preventDefault();
   const inputValues = [];
   inputs.forEach((input) => {
-    inputValues.push(input.value);
+    if (input.value === 'on') {
+      input = input.checked;
+      inputValues.push(input);
+    } else {
+      inputValues.push(input.value);
+    }
   });
 
   const newBook = new Book(
@@ -81,5 +100,4 @@ submitButton.addEventListener('click', (e) => {
 
   addBookToLibrary(newBook);
   displayBooks();
-  console.log(myLibrary);
 });
