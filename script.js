@@ -34,15 +34,27 @@ exitFormButton.addEventListener('click', () => {
   });
 });
 
-function changeReadStatusButton(readButtonHTML) {
+function changeReadStatusButton(readButtonHTML, book) {
   readButtonHTML.addEventListener('click', () => {
+    let newRead;
     if (readButtonHTML.textContent === 'Read') {
       readButtonHTML.textContent = 'Not Read';
       readButtonHTML.style.backgroundColor = 'red';
+      newRead = false;
     } else {
       readButtonHTML.textContent = 'Read';
       readButtonHTML.style.backgroundColor = 'green';
+      newRead = true;
     }
+
+    const bookIndex = myLibrary.indexOf(book);
+    console.log(`bookIndex: ${bookIndex}`);
+    if (bookIndex !== -1){
+    const newBook = new Book(book.title, book.author, book.pagesNumber, newRead);
+    console.log(`newBook: ${newBook}`)
+    myLibrary.splice(bookIndex, 1, newBook);
+    }
+    console.log(`library: ${myLibrary}`);
   });
 }
 
@@ -64,7 +76,7 @@ function displayBooks() {
           HTML.textContent = 'Not Read';
           HTML.style.backgroundColor = 'red';
         }
-        changeReadStatusButton(HTML);
+        changeReadStatusButton(HTML, newBook);
       } else {
         HTML.textContent = bookProperty;
       }
