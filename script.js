@@ -101,8 +101,7 @@ function displayBooks() {
   });
 }
 
-submitButton.addEventListener('click', (e) => {
-  e.preventDefault();
+submitButton.addEventListener('click', () => {
   const inputValues = [];
   inputs.forEach((input) => {
     if (input.value === 'on') {
@@ -112,14 +111,16 @@ submitButton.addEventListener('click', (e) => {
       inputValues.push(input.value);
     }
   });
+  const form = document.querySelector('form');
 
-  const newBook = new Book(
-    inputValues[0],
-    inputValues[1],
-    inputValues[2],
-    inputValues[3],
-  );
-
-  addBookToLibrary(newBook);
-  displayBooks();
+  if (form.checkValidity()) {
+    const newBook = new Book(
+      inputValues[0],
+      inputValues[1],
+      inputValues[2],
+      inputValues[3],
+    );
+    addBookToLibrary(newBook);
+    displayBooks();
+  }
 });
