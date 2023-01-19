@@ -101,19 +101,20 @@ function displayBooks() {
   });
 }
 
-submitButton.addEventListener('click', () => {
-  const inputValues = [];
-  inputs.forEach((input) => {
-    if (input.value === 'on') {
-      input = input.checked;
-      inputValues.push(input);
-    } else {
-      inputValues.push(input.value);
-    }
-  });
+submitButton.addEventListener('click', (e) => {
   const form = document.querySelector('form');
 
   if (form.checkValidity()) {
+    const inputValues = [];
+    inputs.forEach((input) => {
+      if (input.value === 'on') {
+        input = input.checked;
+        inputValues.push(input);
+      } else {
+        inputValues.push(input.value);
+      }
+    });
+
     const newBook = new Book(
       inputValues[0],
       inputValues[1],
@@ -122,5 +123,6 @@ submitButton.addEventListener('click', () => {
     );
     addBookToLibrary(newBook);
     displayBooks();
+    e.preventDefault();
   }
 });
