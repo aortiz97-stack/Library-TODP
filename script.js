@@ -115,6 +115,8 @@ submitButton.addEventListener('click', (e) => {
       }
     });
 
+    e.preventDefault();
+
     const newBook = new Book(
       inputValues[0],
       inputValues[1],
@@ -123,6 +125,5 @@ submitButton.addEventListener('click', (e) => {
     );
     addBookToLibrary(newBook);
     displayBooks();
-    e.preventDefault();
   }
 });
